@@ -4,6 +4,7 @@ const Wrapper = styled.nav`
     background-color: #F8F9FA;
     width: 100%;
     border: 1px solid #dee2e6;
+     
     .nav-header {
         display: flex;
         align-items: center;
@@ -21,6 +22,7 @@ const Wrapper = styled.nav`
             border: 1px solid #d3d9de;
             background: none;
             display: flex;
+            cursor: pointer;
         }
         svg {
            
@@ -29,17 +31,12 @@ const Wrapper = styled.nav`
             width: 50px;
         }
     }
-     .show-container {
-           height: 10rem;
-            
-        }
+    
     .links-container {
-        height: 0px;
         overflow: hidden;
         transition: .3s ease-in-out all;
        
-       .nav-link{
-            
+       .nav-link { 
             text-decoration: none;
             letter-spacing: 0.1rem;
             color: rgb(0%,0%,9%);

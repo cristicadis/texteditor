@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
@@ -9,13 +9,19 @@ import Wrapper from "../assets/wrappers/Navbar";
 
 
 const Navbar = () => {
-    const [showLinks, setShowLinks] = useState(true)
-    const dispatch = useDispatch()
+    const [showLinks, setShowLinks] = useState(true);
+    const linksContainerRef = useRef(null);
+    const linksRef = useRef(null);
+    const dispatch = useDispatch();
     const {mode} = useSelector((state) => state.data)
      
     const toggleLinks= () => {
+        
         setShowLinks(!showLinks)
-        console.log(showLinks)
+        
+    }
+    const linkStyles = {
+        height:showLinks?`${linksRef?.current?.getBoundingClientRect()?.height + 25}px`:'0px'
     }
   return (
     <Wrapper>
@@ -24,14 +30,15 @@ const Navbar = () => {
                 <Link to='/'>textEditor</Link>
                 <button onClick={toggleLinks}><MenuIcon /></button>
             </div>
-            <div className={showLinks?'links-container show-container':'links-container'}>
-                <ul>
+            <div className='links-container' ref={linksContainerRef} style={linkStyles}>
+                <ul ref={linksRef}>
                     <li>
                         <Link className="nav-link" to='/'>Home</Link>
                     </li>
                     <li>
                         <Link className="nav-link" to='/about'>About</Link>
                     </li>
+                    
                 </ul>
                 <div className="darkmode">
                     <input  type="checkbox" role="switch" id="flexSwitchCheckDefault "/>
