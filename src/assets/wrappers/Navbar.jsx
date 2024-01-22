@@ -4,14 +4,19 @@ const Wrapper = styled.nav`
     background-color: #F8F9FA;
     width: 100%;
     border: 1px solid #dee2e6;
-     
+    .active {
+        color:black;    
+    }
+     a {
+        color: #565757;
+     }
     .nav-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0.6rem;
         a {
-            color: rgb(0%,0%,247%);
+            color: #000000;
             text-decoration: none;
             text-transform: capitalize;
             font-size: 1.3rem;
@@ -38,18 +43,22 @@ const Wrapper = styled.nav`
        
        .nav-link { 
             text-decoration: none;
+            font-weight: 400;
             letter-spacing: 0.1rem;
-            color: rgb(0%,0%,9%);
+            
             display: block;
             padding:0.5rem 1rem;
             transition: .3s ease-in-out all;
         }
         .nav-link:active,
-        .nav-link:hover {
-            color: red;
+        .nav-link:hover,
+        .nav-link:checked{
+            
         }
         .darkmode {
-            padding-bottom: 6px;
+            padding:0 1rem;
+            color: #565757;
+            
         }
     }
 `;

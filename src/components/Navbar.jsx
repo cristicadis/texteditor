@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import PropTypes from "prop-types";
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import { changeMode } from "../features/data/dataSlice";
 import MenuIcon from "../icons/MenuIcon";
 import Wrapper from "../assets/wrappers/Navbar";
-
+import Switch from '@mui/material/Switch';
+import { FormControlLabel } from "@mui/material";
 
 
 const Navbar = () => {
@@ -14,15 +15,16 @@ const Navbar = () => {
     const linksRef = useRef(null);
     const dispatch = useDispatch();
     const {mode} = useSelector((state) => state.data)
-     
+     console.log(mode)
     const toggleLinks= () => {
         
         setShowLinks(!showLinks)
         
     }
     const linkStyles = {
-        height:showLinks?`${linksRef?.current?.getBoundingClientRect()?.height + 25}px`:'0px'
+        height:showLinks?`${linksRef?.current?.getBoundingClientRect()?.height + 38}px`:'0px'
     }
+    
   return (
     <Wrapper>
         <div className="nav-center">
@@ -33,16 +35,18 @@ const Navbar = () => {
             <div className='links-container' ref={linksContainerRef} style={linkStyles}>
                 <ul ref={linksRef}>
                     <li>
-                        <Link className="nav-link" to='/'>Home</Link>
+                        <NavLink activeclassname="active" className="nav-link" to='/'>Home</NavLink>
                     </li>
                     <li>
-                        <Link className="nav-link" to='/about'>About</Link>
+                        <NavLink activeclassname="active" className="nav-link" to='/about'>About</NavLink>
                     </li>
                     
                 </ul>
                 <div className="darkmode">
-                    <input  type="checkbox" role="switch" id="flexSwitchCheckDefault "/>
-                    <label  htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
+                         <FormControlLabel control={<Switch onChange={()=>dispatch(changeMode())} />} label="Enable Dark Mode" />
+ 
+                    
+                    
                 </div>
                  
             </div>

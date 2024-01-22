@@ -2,8 +2,18 @@
 
 const Alert = () => {
   return (
-    <div>Alert</div>
+    <div style={{height:'11vh'}}>
+    
+   
+        
+     
+  </div>
   )
 }
 
 export default Alert
+
+
+
+
+ 
