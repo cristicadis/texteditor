@@ -66,18 +66,9 @@ const [text, setText] = useState(" ");
 export default TextForm
 
 const Wrapper= styled.section`
-    margin: 1rem 25px;
-    
-
-    h1{
-        font-size: 1.7rem;
-        font-weight: 400;
-         margin-bottom: 7px;
-         line-height: 1.5;
-        
-    }
+   
     .container {
-        margin-bottom: 15px;
+        
        p{
         color:rgb(4, 9, 156);
         font-weight: 400;
@@ -128,7 +119,7 @@ const Wrapper= styled.section`
     .btn {
         padding: 0.375rem 0.75rem;
         font-size: 1rem;
-        
+        border: none;
         line-height: 1.5;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
         text-align: center;

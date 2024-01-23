@@ -5,7 +5,8 @@ const Wrapper = styled.nav`
     width: 100%;
     border: 1px solid #dee2e6;
     .active {
-        color:black;    
+        color:black; 
+        
     }
      a {
         color: #565757;
@@ -28,7 +29,18 @@ const Wrapper = styled.nav`
             background: none;
             display: flex;
             cursor: pointer;
+            outline:none;
+            text-decoration: none;
+            transition:.2s ease-in-out all ;
         }
+        button:hover,
+        button:active
+         {  border: none;
+            border: 1px solid #d3d9de;
+            box-shadow:0 0 0 0.25rem;
+        }
+        //#575757
+         
         svg {
            
             
@@ -48,7 +60,7 @@ const Wrapper = styled.nav`
             
             display: block;
             padding:0.5rem 1rem;
-            transition: .3s ease-in-out all;
+            transition: .2s ease-in-out all;
         }
         .nav-link:active,
         .nav-link:hover,
