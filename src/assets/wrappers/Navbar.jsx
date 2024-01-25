@@ -37,9 +37,9 @@ const Wrapper = styled.nav`
         button:active
          {  border: none;
             border: 1px solid #d3d9de;
-            box-shadow:0 0 0 0.25rem;
+            box-shadow:0 0 0 0.25rem #575757;
         }
-        //#575757
+        
          
         svg {
            

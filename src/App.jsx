@@ -19,7 +19,7 @@ function App() {
       <Router>
       <Navbar  />
         <Alert /> 
-        <div className="container my-3">
+        
 
           <Routes>
             <Route path="/About" element={<About/>}>
@@ -30,7 +30,7 @@ function App() {
           </Routes>
 
           
-        </div>
+        
 
 
       </Router>

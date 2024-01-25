@@ -1,77 +1,87 @@
 import { AccordionItem } from './AccordionItem';
 import { styled } from "styled-components";
-import React, { useEffect, useRef, useState } from "react";
+import React, { createRef, useCallback, useEffect, useRef, useState } from "react";
 import ChevronDownIcon from "../icons/ChevronDownIcon";
 import ChevronUpIcon from "../icons/ChevronUpIcon";
+
 const About = () => {
-    
-    const elementRef = useRef([React.createRef(), React.createRef()]);
-    // const linkStyles = {height:elementRef?.current?.getBoundingClientRect()?.height};
-   const linkStyles = `{height:${elementRef.current[0]?.current?.getBoundingClientRect()?.height}px}`
-   console.log( linkStyles)
-  
-
-     
-
-    
-  const [data, setData]= useState([
+    const elementRef = useRef([]);
+    const [data, setData]= useState([
     {   id:0,
         title:'Analyze Your Text',
         text:'This app gives you a way to enhance your text quality.',
         clicked:false,
     },
     {   id:1,
-        title:'Your Text 2',
-        text:'This app gives you a way to enhance your text quality. 2 This app gives you a way to enhance your text quality. 22 This app gives you a way to enhance your text quality. 2',
+        title:'Free to Use',
+        text:'This is an free counter tool,that provide instant solution of your problem.Maintain the dignity of your text with TEXTUTILIS',
         clicked:false,
-    }
-  ])  
-   
-
-    const handleClick = (id) => {    
-        const newData= data.map(item=>{     
-            if(item.id===id){   
+    },
+    {   id:2,
+        title:'Browser Compatible',
+        text:'This works in every browser and has abilty to count every type of document.',
+        clicked:false,
+    }    
+]) 
+    elementRef.current = data.map((_, i) => elementRef.current[i] ?? createRef());
+    
+    
+ 
+    const handleClick = (id) => {     
+        const newData = data.map((item)=> {
+            if(item.id === id){
                 return {...item, clicked:!item.clicked}
-            } else
-            if(item.id!==id){
+            } else if(item.id !== id){
                 return {...item, clicked:false}
-            } 
-            return item;
+            } else return item;
         })
-        setData(newData);
-        
+        setData(newData)
     }
-    useEffect(() => {
-        data.map((item)=>{
-            console.log(elementRef.current[item.id].current)
-        })
-    
-  }, []);
 
-    
-    
 
   return (<Wrapper>
     <div className="container">
         <h1>About Us</h1>
         <div className="accordion">
-        {data.map((item, index)=>{
-            const {title, text, clicked} = item;
-            return (
-                <div className="accordion-item" key={index}>
-                    <button  type="button" className="accordion-button" onClick={()=>handleClick(index)}>
-                        <h2>{title} </h2>
-                        {clicked ? <ChevronUpIcon/> :<ChevronDownIcon/>}
+                    {data.map((item, index)=>{
+                        const {id, title, text, clicked} = item;
+                        return (<div className="accordion-item" key={index}>
+                                    <button type='button' className="accordion-button" onClick={()=>handleClick(id)}>
+                                        <h2>{data[id].title}</h2>
+                                        {data[id].clicked ? <ChevronUpIcon/> :<ChevronDownIcon/>}
+                                    </button>
+                                    <div  className='collapse'  style={{height:data[id].clicked?`${elementRef.current[id].current.getBoundingClientRect().height}px`:'0px'}}  >
+                                        <div className='text' ref={elementRef.current[id]} >
+                                        <p>{data[id].text}</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>        
+                        )
+                    })}
+                    {/* <button type='button' className="accordion-button" onClick={()=>handleClick(0)}>
+                        <h2>{data[0].title}</h2>
+                        {data[0].clicked ? <ChevronUpIcon/> :<ChevronDownIcon/>}
                     </button>
-                    <div className="collapse"  style={{height:'0px'}}>
-                        <div className='text' ref={elementRef.current[index]}>
-                            <p>{text}</p>
+                    <div  className='collapse'  style={{height:data[0].clicked?`${elementRef.current[0].current.getBoundingClientRect().height}px`:'0px'}}  >
+                        <div className='text' ref={elementRef.current[0]} >
+                            <p>{data[0].text}</p>
                         </div>
                         
                     </div>
-                </div>
-                )
-        })}
+                    <button type='button' className="accordion-button" onClick={()=>handleClick(1)}>
+                        <h2>{data[1].title}</h2>
+                        {data[1].clicked ? <ChevronUpIcon/> :<ChevronDownIcon/>}
+                    </button>
+                    <div  className='collapse'  style={{height:data[1].clicked?`${elementRef.current[1].current.getBoundingClientRect().height}px`:'0px'}}  >
+                        <div className='text' ref={elementRef.current[1]} >
+                            <p>{data[1].text}</p>
+                        </div>
+                        
+                    </div> */}
+                
+                
+       
            
             
             {/* <div className="accordion-item"></div>
@@ -98,11 +108,8 @@ const Wrapper = styled.section`
         
     }
     .accordion-item {
-        border: 1px solid #dee2e6;
-        border-right: none;
-        border-left: none;
-        border-top: none;
-        
+        border-bottom: 1px solid #dee2e6;
+        overflow: hidden;
         
     }
     .accordion-item:first-of-type,
@@ -120,6 +127,7 @@ const Wrapper = styled.section`
         border: none;
         background: transparent;
         justify-content: space-between;
+        border-bottom: 1px solid #dee2e6;
         
         
     }
@@ -128,14 +136,19 @@ const Wrapper = styled.section`
         border-bottom-left-radius:0.375rem;
         border-bottom: none;   
     }
+    
     .collapse {
         overflow: hidden;
         transition: .3s ease-in-out all;
-        border-top: 1px solid #dee2e6;
+        margin-top: -1px;
+        
+        
+        
         .text {
             padding: 1rem;
         }
     }
+   
    
    
 
