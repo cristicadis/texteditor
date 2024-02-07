@@ -5,21 +5,15 @@ import styled from 'styled-components';
 const Alert = (props) => {
     const {alert} = useSelector((state) => state.data)
     
-    
-   
-
-  return (<Wrapper>
+  return (
+  <Wrapper>
         <div  style={{height:'11vh'}}>
             { alert && 
             <div className='alert' role="alert">
-                <strong style={{textTransform:'capitalize'}}>{alert.type}</strong>: {alert.msg}
-                
+                <strong style={{textTransform:'capitalize'}}>{alert.type}</strong>: {alert.msg}           
             </div>}
-            
-     
         </div>
-  </Wrapper>
-    
+  </Wrapper>    
   )
 }
 

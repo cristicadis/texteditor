@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import PropTypes from "prop-types";
 import {Link, NavLink} from 'react-router-dom';
-import { changeMode } from "../features/data/dataSlice";
+import { changeMode, hideAlert, showAlert } from "../features/data/dataSlice";
 import MenuIcon from "../icons/MenuIcon";
 import Wrapper from "../assets/wrappers/Navbar";
 import Switch from '@mui/material/Switch';
@@ -15,7 +14,7 @@ const Navbar = () => {
     const linksRef = useRef(null);
     const dispatch = useDispatch();
     const {mode} = useSelector((state) => state.data)
-     console.log(mode)
+     
     const toggleLinks= () => {    
         setShowLinks(!showLinks)    
     }
@@ -34,7 +33,22 @@ const Navbar = () => {
     const linkStyles = {
         height:showLinks?`${linksRef?.current?.getBoundingClientRect()?.height + 38}px`:'0px'
     }
-    
+    const handleChange = () => {
+       dispatch(changeMode())  
+       if(mode === 'light'){
+            dispatch(showAlert({msg:"Dark mode has been enabled", type:"success"}))
+            setTimeout (()=>{
+                dispatch(hideAlert())
+            },1200)
+        } else if (mode ==='dark'){
+            dispatch(showAlert({msg:"Light mode has been enabled", type:"success"}))
+            setTimeout (()=>{
+                dispatch(hideAlert())
+            },1200)
+        }  
+    }
+
+ 
   return (
     <Wrapper>
         <div ref={linksContainerRef} className={`nav-center ${mode === 'dark'? 'bg-dark':'bg-light' }`}>
@@ -53,10 +67,7 @@ const Navbar = () => {
                     
                 </ul>
                 <div className={`darkmode ${mode === 'dark' && 'darkmode-dark' }`} >
-                         <FormControlLabel  control={<Switch onChange={()=>dispatch(changeMode())} />} label="Enable Dark Mode" />
- 
-                    
-                    
+                         <FormControlLabel  control={<Switch onChange={handleChange} />} label="Enable Dark Mode" />                 
                 </div>
                  
             </div>
@@ -65,20 +76,6 @@ const Navbar = () => {
     </Wrapper>
     
   )
-
-  
-
-
-
 }
 
 export default Navbar
-
-// Navbar.propTypes = {
-//   title: PropTypes.string.isRequired, aboutText: PropTypes.string.isRequired
-// };
-
-// Navbar.defaultProps = {
-//   title: 'Set title here',
-//   aboutText: 'About text here'
-// }

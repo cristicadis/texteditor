@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useDispatch } from "react-redux";
 import { hideAlert, showAlert } from "../features/data/dataSlice";
-
+import { useSelector } from "react-redux";
 
 
 const TextForm = () => {
+    const {mode} = useSelector((state) => state.data)
     const dispatch = useDispatch();
     const [text, setText] = useState(" ");
 
@@ -51,11 +52,11 @@ const TextForm = () => {
   return (
     
     <Wrapper>
-      <div className="container"  >
+      <div className='container'  >
         <h1>Enter the text to analyze below</h1>
         <div className="textarea-container">
-          <textarea
-            className="form-control"
+          <textarea 
+            className={`form-control ${mode === 'dark'? 'bg-dark':'bg-light' }`}
             value={text}
             onChange={handleChange}
             style={{}}
@@ -91,6 +92,7 @@ const TextForm = () => {
 export default TextForm
 
 const Wrapper= styled.section`
+    
    
     .container {
         
@@ -107,6 +109,7 @@ const Wrapper= styled.section`
         letter-spacing: 1px;
        }
     }
+    
     textarea {
         width: 100%;
         font-size: 1rem;

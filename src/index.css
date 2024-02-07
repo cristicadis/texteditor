@@ -11,7 +11,6 @@ body {
 }
 
 body {
-  background-color: #fff;
   font-family: 'Roboto',
       sans-serif;
 }
@@ -28,4 +27,32 @@ body {
  }
   h2 {
     font-size: 1rem;
+  }
+  .bg-light {
+    background-color: #fff;
+    color: black;
+  }
+  
+  .bg-dark {
+    background-color: black;
+    color: white;
+  }
+  .main {
+    min-height: 100vh;
+  }
+
+  @media only screen and (min-width: 575px) {
+      .container {
+        max-width: 540px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+         
+  }
+
+  @media only screen and (min-width: 992px) {
+      
+  }
+  @media only screen and (min-width: 1200px) {
+      
   }

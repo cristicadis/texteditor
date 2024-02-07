@@ -45,6 +45,8 @@ const Wrapper = styled.nav`
         font-weight: 500;
         
     }
+   
+
     .active {
         color:black; 
        

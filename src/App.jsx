@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from "react-redux";
 
 import './App.css'
 import Navbar from './components/Navbar'
@@ -13,9 +14,10 @@ import About from './components/About';
 
 
 function App() {
+  const {mode} = useSelector((state) => state.data)
   
   return (
-    <>
+    <section className={`main ${mode === 'dark'? 'bg-dark':'bg-light' }`}>
       <Router>
       <Navbar  />
         <Alert /> 
@@ -34,7 +36,7 @@ function App() {
 
 
       </Router>
-    </>
+    </section>
      
     
   )
